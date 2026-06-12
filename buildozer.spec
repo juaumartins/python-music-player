@@ -20,6 +20,7 @@ android.ndk = 25b
 android.archs = arm64-v8a, armeabi-v7a
 
 android.permissions = android.permission.READ_MEDIA_AUDIO,android.permission.READ_EXTERNAL_STORAGE
+android.accept_sdk_license = True
 
 android.debug_artifact = apk
 
