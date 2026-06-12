@@ -1,54 +1,77 @@
 name: Build Android APK
 
 on:
-  workflow_dispatch:
-  push:
-    branches:
-      - main
+
+workflow_dispatch:
+
+push:
+
+branches:
+
+main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
 
-    steps:
-      - name: Baixar código
-        uses: actions/checkout@v4
+build:
 
-      - name: Mostrar arquivos do projeto
-        run: |
-          pwd
-          ls -la
+runs-on: ubuntu-latest
 
-      - name: Configurar Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.10"
+steps:
 
-      - name: Instalar dependências do sistema
-        run: |
-          sudo apt update
-          sudo apt install -y \
-            git zip unzip openjdk-17-jdk \
-            python3-pip python3-setuptools python3-wheel \
-            build-essential autoconf automake libtool pkg-config \
-            zlib1g-dev libffi-dev libssl-dev \
-            libltdl-dev ccache gettext cmake
+name: Baixar código
 
-      - name: Instalar Buildozer
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install "cython==0.29.36" "buildozer==1.5.0"
+uses: actions/checkout@v4
 
-      - name: Limpar builds antigos
-        run: |
-          buildozer android clean || true
+name: Mostrar arquivos do projeto
 
-      - name: Gerar APK Android
-        run: |
-          yes | buildozer -v android debug
+run:
 
-      - name: Enviar APK para download
-        uses: actions/upload-artifact@v4
-        with:
-          name: music-player-apk
-          path: bin/*.apk
+pwd
+
+ls -la
+
+name: Configurar Python
+
+uses: actions/setup-python@v5
+
+with
+
+python-version: "3.10"
+
+name: Instalar dependências do sistema
+
+run:
+
+sudo apt update.
+
+sudo apt install -y \ git zip unzip openjdk-17-jdk python3-pip python3-setuptools python3-wheel \ build-essential autoconf automake libtool pkg-config \ zlib1g-dev libffi-dev libssl-dev \ libltdl-dev ccache gettext cmake.
+
+name: Instalar Buildozer
+
+run:
+
+python-m pip install-upgrade pip
+
+python-m pip install "cython==0.29.36" "buildozer==1.5.0"
+
+name: Limpar builds antigos
+
+run:
+
+rm -rf.buildozer bin buildozer android clean || true
+
+name: Gerar APK Android
+
+run:
+
+yes buildozer v android debug
+
+name: Enviar APK para download
+
+uses: actions/upload-artifact@v4
+
+with:
+
+name: music-player-apk path
+
+: bin/.apk
